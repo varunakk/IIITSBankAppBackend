@@ -16,7 +16,7 @@ const client = redis.createClient({ url:"redis-19978.c275.us-east-1-4.ec2.cloud.
 
 client.on('error', (err) => console.log('Redis Client Error', err))
 
-await client.connect()
+//await client.connect()
 return client
 
 // await client.set('key', 'value')
