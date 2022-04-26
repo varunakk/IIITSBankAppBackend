@@ -94,7 +94,7 @@ const dbt=require("./routers/DBTrans")
 app.use("/dbt",dbt);
 
 
-app.listen(5000,()=>{
+app.listen(process.env.PORT||5000,()=>{
 
     console.log("server started");
 });
