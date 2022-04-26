@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app/app.js",
-    "test": " mocha --timeout 10000 app/test",
+    "start": "node app.js",
+    "test": " mocha --timeout 10000 test",
      "heroku-postbuild": "npm install && npm run build "
 
   },
