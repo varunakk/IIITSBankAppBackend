@@ -73,7 +73,7 @@ var storage = multer.diskStorage({
       return next(error)
     }
     //  res.send(file)
-    res.redirect("http://localhost:3000/Admin/");
+    res.redirect("http://appbankiiitsfront.herokuapp.com/Admin/");
   })
 
 app.use(express.json())
