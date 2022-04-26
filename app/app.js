@@ -38,6 +38,9 @@ con.on('open',()=>{
 //.on is used to trigger a event 
 var cors = require('cors')
 app.use(cors())
+const buildPath = path.join(__dirname, '..', 'build');
+app.use(express.static(buildPath));
+
 /*
 app.use(
     "/api-docs",
