@@ -1,7 +1,11 @@
 const express =require("express");
 const mongoose=require("mongoose");
 const app=express();
-require('dotenv').config()
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
+//require('dotenv').config()
 //const swaggerUi = require('swagger-ui-express')
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./swagger.yaml');
