@@ -12,7 +12,7 @@ module.exports = client;
 const redis = require('redis');
 const getConnection = async () => {
 
-const client = redis.createClient({ url:"redis-19978.c275.us-east-1-4.ec2.cloud.redislabs.com:19978" })     
+const client = redis.createClient({ url:process.env.REDIS_URL||"redis-19978.c275.us-east-1-4.ec2.cloud.redislabs.com:19978" })     
 
 client.on('error', (err) => console.log('Redis Client Error', err))
 
