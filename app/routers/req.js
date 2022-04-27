@@ -7,7 +7,6 @@ const verifytoken = require("./middleware/verifytoken");
 router.get("/",async(req,res)=>{
     try{
 	response=await reqcoll.find();
-    	dal = await  redisClient.setEx(tutorialName,600, JSON.stringify(response));
         res.json(response);   
     }
     catch(err){
@@ -48,28 +47,6 @@ router.post("/",verifytoken,async(req,res)=>{
     })
     try{
         const response=await u.save();
-
-        var tutorialName = "allreqList";
-
-        d=await redisClient.get(tutorialName)
-        if(d){
-            try{
-          dal = await  redisClient.rPush(tutorialName, JSON.stringify(u));
-            }
-            catch{
-                console.log("err in req red pus")
-            }
-
-        }
-        else{
-            try{
-
-            dal = await  redisClient.setEx(tutorialName,600, JSON.stringify(u));
-        }
-        catch{
-            console.log("err in req red pus")
-        }
-        }
         res.json(response);
         
     }catch(err){
