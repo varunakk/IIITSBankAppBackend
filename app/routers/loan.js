@@ -66,7 +66,6 @@ router.get("/:acc/:id",async(req,res)=>{
 
 router.post("/",upload.single('profileImg'),async(req,res)=>{
    // console.log(req.body)
-   const redisClient=await require("../models/redis").getConnection();
 
    const url = req.protocol + '://' + req.get('host');
     const u=new loancoll({
@@ -79,30 +78,7 @@ router.post("/",upload.single('profileImg'),async(req,res)=>{
     })
     try{
         const response=await u.save();
-
-        var tutorialName = "allLoanList";
-
-        d=await redisClient.get(tutorialName)
-        if(d){
-            try{
-
-            dal = await  redisClient.rPush(tutorialName, JSON.stringify(u));
-        }
-        catch{
-            console.log("err in loan red pus")
-        }
-        }
-        else{
-            try{
-
-            dal = await  redisClient.setEx(tutorialName,600, JSON.stringify(u));
-        }
-        catch{
-            console.log("err in loan red pus")
-        }
-        }
-
-        res.json(response);
+    res.json(response);
         
     }catch(err){
     res.send(err);
