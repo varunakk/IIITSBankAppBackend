@@ -5,29 +5,13 @@ const verifytoken = require("./middleware/verifytoken");
 
 
 router.get("/",async(req,res)=>{
-    const redisClient=await require("../models/redis").getConnection();
-
-    var tutorialName = "allreqList";
-    console.log(tutorialName);
-    //console.log(await redisClient.EXISTS("allreqList"))
-    d=await redisClient.get(tutorialName)//redisClient.EXISTS(tutorialName)
-    if(d){
-        data = await redisClient.get(tutorialName)
-        console.log("Getting data from Redis Cache");
-        console.log(data);
-        if(data.length==0){
-        	response=await reqcoll.find();
-    	dal = await  redisClient.setEx(tutorialName,600, JSON.stringify(response));
-        res.json(response);   
-
-        }
-        
-        res.json(JSON.parse(data));
-    }
-    else{
+    try{
 	response=await reqcoll.find();
     	dal = await  redisClient.setEx(tutorialName,600, JSON.stringify(response));
         res.json(response);   
+    }
+    catch(err){
+        console.log("err",err);
     }
 
 });
