@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   version: 1.0.0
   title:  Bank API
-  description: A simple API to do CRUD on 'banking' resource
+  description: A simple API to do CRUD on 'banking' resource 
 
 servers:
   - url: http://localhost:5000/
