@@ -1,10 +1,7 @@
+const config = require("dotenv").config();
 const express =require("express");
 const mongoose=require("mongoose");
 const app=express();
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
-
 //require('dotenv').config()
 //const swaggerUi = require('swagger-ui-express')
 const YAML = require('yamljs');
@@ -52,10 +49,14 @@ app.use(
     swaggerUi.setup(swaggerDocument)
   );
 */
+
+
 var morgan = require('morgan')
 morgan.token('host', function(req, res){
     return req.hostname;
 })
+
+
 morgan.token("wbdaccess", "User trying to access the :url");
 let logsinfo = fsr.getStream({filename:"test.log", frequency:"1h", verbose: true});
 app.use(morgan('wbdaccess', {stream: logsinfo}))
