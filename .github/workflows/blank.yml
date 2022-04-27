@@ -19,10 +19,6 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        redis-version: [4]
-
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -30,20 +26,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '17.x'
-      - uses: superchargejs/redis-github-action@1.1.0
-        with:
-          redis-version: ${{ matrix.redis-version }}
-      - name: Install redis cli # so we can test the server
-        run: sudo apt-get install -y redis-tools
-
-      - name: Verify that redis is up
-        run: redis-cli ping
-
-      - run: rm -rf node_modules package-lock.json 
-      - run : npm install 
-      - run: npm install jsonwebtoken --save
+      - run: npm install
       - run: npm test
-
 
   deploy:
     runs-on: ubuntu-latest
@@ -53,5 +37,5 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12 
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "appbankiiits"
+          heroku_app_name: "iiitsbankbackend"
           heroku_email: "varunakrishna1@gmail.com"
