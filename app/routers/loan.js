@@ -31,36 +31,12 @@ var upload = multer({
 
 
 router.get("/",async(req,res)=>{
-    const redisClient=await require("../models/redis").getConnection();
-
-    var tutorialName = "allLoanList";
-    console.log(tutorialName);
-    //console.log(await redisClient.EXISTS("allLoanList"))
-    d=await redisClient.get(tutorialName) //redisClient.EXISTS(tutorialName)
-    if(d){
-        data = await redisClient.get(tutorialName)
-        console.log("Getting data from Redis Cache");
-        console.log(data);
-        if(data.length!=0){
-            res.json(JSON.parse(data));
-        }
-        else{
-            lon = await loancoll.find()   // ({ $or: [ { id : req.params.acc }, {acc: req.params.acc  } ] } )
-            console.log("loan",lon);
-               console.log(JSON.stringify(lon));
-               dal = await  redisClient.setEx(tutorialName,600,JSON.stringify(lon));
-               res.json(lon);   
-   
-        }
-        
-    }
-    else{
+try{
     const response=await loancoll.find();
-    console.log(response);
-  dal = await  redisClient.setEx(tutorialName,600, JSON.stringify(response));
-
     res.json(response);
     }
+    catch{
+        console.log("err");
 
 });
 
