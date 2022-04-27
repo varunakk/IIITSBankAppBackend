@@ -8,7 +8,7 @@ client.on('error', (err) => console.log('Redis Client Error', err))
 client.connect()
 module.exports = client;
 */
-
+/*
 var redis = require('redis');
 var url = require('url');
 const getConnection = async () => {
@@ -29,7 +29,7 @@ getConnection,
 }
 
 
-/*
+*/
 //import { createClient } from 'redis';
 const redis = require('redis');
 const getConnection = async () => {
@@ -49,7 +49,7 @@ return client
 module.exports = {
 getConnection,
 }
-*/
+
 /*             //({ url: 'redis://redis:6379' });
 client.connect()
 module.exports = client;
