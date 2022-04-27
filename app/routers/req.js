@@ -38,8 +38,6 @@ router.get("/:acc/:id",verifytoken,async(req,res)=>{
 
 router.post("/",verifytoken,async(req,res)=>{
     console.log(req.body)
-    const redisClient=await require("../models/redis").getConnection();
-
     const u=new reqcoll({
         by:req.body.by,
         amount:req.body.amount,
