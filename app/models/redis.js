@@ -8,6 +8,28 @@ client.on('error', (err) => console.log('Redis Client Error', err))
 client.connect()
 module.exports = client;
 */
+
+var redis = require('redis');
+var url = require('url');
+const getConnection = async () => {
+
+var redisURL = url.parse("redis-19978.c275.us-east-1-4.ec2.cloud.redislabs.com:19978");
+var client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+client.auth(redisURL.auth.split(":")[1]);
+await client.connect()
+return client
+
+// await client.set('key', 'value')
+// const value = await client.get('key')
+// console.log(value)
+}
+
+module.exports = {
+getConnection,
+}
+
+
+/*
 //import { createClient } from 'redis';
 const redis = require('redis');
 const getConnection = async () => {
@@ -27,7 +49,7 @@ return client
 module.exports = {
 getConnection,
 }
-
+*/
 /*             //({ url: 'redis://redis:6379' });
 client.connect()
 module.exports = client;
