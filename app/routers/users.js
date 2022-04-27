@@ -4,9 +4,7 @@ const router=express.Router();
 const verifytoken=require("./middleware/verifytoken");
 const usercoll=require("../models/users");
 router.get("/",async(req,res)=>{
-    const redisClient=await require("../models/redis").getConnection();
 
-  var tutorialName = "allusersList";
     try{    const response=await usercoll.find();
         console.log(response);
         res.json(response);
