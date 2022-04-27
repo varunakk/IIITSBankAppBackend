@@ -35,9 +35,9 @@ try{
     const response=await loancoll.find();
     res.json(response);
     }
-    catch{
-        console.log("err");
-
+    catch(err){
+        console.log("err",err);
+    }
 });
 
 
