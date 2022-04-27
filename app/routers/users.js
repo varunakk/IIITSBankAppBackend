@@ -7,27 +7,13 @@ router.get("/",async(req,res)=>{
     const redisClient=await require("../models/redis").getConnection();
 
   var tutorialName = "allusersList";
-    console.log(tutorialName);
-    //console.log(await redisClient.EXISTS("allusersList"))
-    d=await redisClient.get(tutorialName)
-    console.log(d)
-    if(d){
-        data = await redisClient.get(tutorialName)
-        console.log("Getting data from Redis Cache");
-        console.log(data);
-        if(data.length==0){
-            const response=await usercoll.find();
-            console.log(response);
-            res.json(response);
-        }
-        else
-        res.json(JSON.parse(data));
-    }
-    else{    const response=await usercoll.find();
+    try{    const response=await usercoll.find();
         console.log(response);
         res.json(response);
-    
-            
+    }
+    catch(err){
+        console.log("err");
+
     }
 
 });
