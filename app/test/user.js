@@ -24,7 +24,7 @@ describe('users', () => {
         chai.request(app)
             .get('/users')
             .end((err, res) => {
-                expect(res.body).to.eql({});
+                expect(res.body).to.be("Array");
                 expect(res).to.have.status(200);
                   //res.should.have.status(200);
                   //res.body.should.be.eql({});
