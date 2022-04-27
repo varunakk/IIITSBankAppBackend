@@ -7,8 +7,8 @@
     "node": "17.9.0"
   },
   "scripts": {
-    "test": " mocha --timeout 10000 app/app/test/ --exit",
-     "start": "node app/app/app.js",
+    "test": " mocha --timeout 10000 app/test/ --exit",
+     "start": "node app/app.js",
      "heroku-postbuild": "npm install && npm run build "
   },
   "author": "",
