@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+    "engines": {
+    "node": "17.9.0"
+  },
   "scripts": {
     "test": " mocha --timeout 10000 app/app/test/ --exit",
      "start": "node app/app/app.js",
