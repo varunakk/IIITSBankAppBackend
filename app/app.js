@@ -3,9 +3,9 @@ const express =require("express");
 const mongoose=require("mongoose");
 const app=express();
 //require('dotenv').config()
-//const swaggerUi = require('swagger-ui-express')
+const swaggerUi = require('swagger-ui-express')
 const YAML = require('yamljs');
-const swaggerDocument = YAML.load('./swagger.yaml');
+const swaggerDocument = YAML.load('./../swagger.yaml');
 const path=require('path')
 const multer  = require('multer')
 //const upload = multer({ dest: 'uploads/' })
@@ -42,13 +42,13 @@ app.use(cors())
 const buildPath = path.join(__dirname, '..', 'build');
 app.use(express.static(buildPath));
 
-/*
+
 app.use(
     "/api-docs",
     swaggerUi.serve,
     swaggerUi.setup(swaggerDocument)
   );
-*/
+
 
 
 var morgan = require('morgan')
