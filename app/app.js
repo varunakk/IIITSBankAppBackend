@@ -5,7 +5,7 @@ const app=express();
 //require('dotenv').config()
 const swaggerUi = require('swagger-ui-express')
 const YAML = require('yamljs');
-const swaggerDocument = YAML.load('./../swagger.yaml');
+const swaggerDocument = YAML.load('./swagger.yaml');
 const path=require('path')
 const multer  = require('multer')
 //const upload = multer({ dest: 'uploads/' })
